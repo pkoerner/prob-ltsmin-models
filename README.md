@@ -1,6 +1,19 @@
 # prob-ltsmin-models
  B and Event-B models used to benchmark the integration of LTSmin and ProB.
 
+## Versions used:
+
+- LTSmin: https://github.com/pkoerner/ltsmin/tree/experiments-ifm-2018
+- ProB: 1.8.1-beta3 (nightly)
+
+### Dependencies:
+
+- ZeroMQ 4.2.3: https://github.com/zeromq/libzmq/releases/tag/v4.2.3
+- CZMQ 4.1.1: https://github.com/zeromq/czmq/releases
+- Sylvan 1.1.2: https://github.com/utwente-fmt/sylvan/tree/v1.1.2
+- hwloc 2.0.1
+- gmp 6.1.2
+- Boost 1.62.0
 
 
 ## Models
