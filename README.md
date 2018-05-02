@@ -4,7 +4,7 @@
 ## Versions used:
 
 - LTSmin: https://github.com/pkoerner/ltsmin/tree/experiments-ifm-2018
-- ProB: 1.8.1-beta3 (nightly) (LTSmin extension only available for Linux and Mac OS X)
+- ProB: 1.8.1-beta3 (nightly). The LTSmin extension only available for Linux and Mac OS X. The exact Linux binaries (64-bit) used for benchmarking can be found here: https://github.com/pkoerner/prob-ltsmin-models/blob/master/ProB.tar.gz. The latest version is available here: https://www3.hhu.de/stups/downloads/prob/tcltk/nightly/
 
 ### Dependencies:
 
