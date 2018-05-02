@@ -4,7 +4,7 @@
 ## Versions used:
 
 - LTSmin: https://github.com/pkoerner/ltsmin/tree/experiments-ifm-2018
-- ProB: 1.8.1-beta3 (nightly)
+- ProB: 1.8.1-beta3 (nightly) (LTSmin extension only available for Linux and Mac OS X)
 
 ### Dependencies:
 
