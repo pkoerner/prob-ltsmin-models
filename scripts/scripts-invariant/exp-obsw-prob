@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#PBS -l select=1:ncpus=2:mem=10GB:arch=ivybridge
+#PBS -l place=vscatter:shared
+#PBS -l walltime=02:00:00
+
+# no restart if job fails
+#PBS -r n
+
+#PBS -N obsw-prob
+#PBS -A ProB
+
+
+MODEL=/home/phkoe102/models/obsw_M001.eventb
+
+#OUTPUTDIR=/gpfs/project/$USER/$PBS_JOBID
+
+#echo "P: Creating output dir"
+#mkdir -p $OUTPUTDIR
+
+echo "Requested amount of CPUs (per node): $OMP_NUM_THREADS"
+
+ZE_LD_PATH=/home/phkoe102/dest-install/lib/
+PROB_LD_PATH=$ZE_LD_PATH:/home/phkoe102/prob_ltsmin/ProB/lib
+
+PROBCLI=/home/phkoe102/prob_ltsmin/ProB/probcli
+
+LD_LIBRARY_PATH=$PROB_LD_PATH /usr/bin/time -v $PROBCLI -model-check $MODEL -noass -nodead -nogoal

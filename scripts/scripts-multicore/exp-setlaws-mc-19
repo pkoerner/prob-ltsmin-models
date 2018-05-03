@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#PBS -l select=1:ncpus=20:mem=10GB:arch=ivybridge
+#PBS -l place=vscatter:shared
+#PBS -l walltime=00:15:00
+
+# no restart if job fails
+#PBS -r n
+
+#PBS -N setlaws-mc-19
+#PBS -A ProB
+
+
+MODEL=/home/phkoe102/models/SetLawsNat.mch
+
+#OUTPUTDIR=/gpfs/project/$USER/$PBS_JOBID
+ENDPOINT=/home/phkoe102/endpoint-$PBS_JOBID.probz
+
+#echo "P: Creating output dir"
+#mkdir -p $OUTPUTDIR
+
+echo "Requested amount of CPUs (per node): $OMP_NUM_THREADS"
+
+PROB_HOME=/home/phkoe102/prob_ltsmin/ProB/
+ZE_LD_PATH=/home/phkoe102/dest-install/lib/
+PROB_LD_PATH=$ZE_LD_PATH:$PROB_HOME/lib
+
+LTSMIN_SEQ=/home/phkoe102/dest-install/bin/prob2lts-seq
+LTSMIN_SYM=/home/phkoe102/dest-install/bin/prob2lts-sym
+LTSMIN_MC=/home/phkoe102/dest-install/bin/prob2lts-mc
+PROBCLI=$PROB_HOME/probcli
+
+touch $ENDPOINT
+
+sleep 5
+LTSMIN_MEM_SIZE=10000000000 LD_LIBRARY_PATH=$PROB_LD_PATH PATH=$PATH:$PROB_HOME /usr/bin/time -v $LTSMIN_MC $MODEL --zocket-prefix=/home/phkoe102/endpoint$PBS_JOBID --threads=19 -c --invariant='!is_init || (inv1 && inv2 && inv3 && inv4 && inv5 && inv6 && inv7 && inv8 && inv9 && inv10 && inv11 && inv12 && inv13 && inv14 && inv15 && inv16 && inv17 && inv18 && inv19 && inv20 && inv21 && inv22 && inv23 && inv24 && inv25 && inv26 && inv27 && inv28 && inv29 && inv30 && inv31 && inv32 && inv33 && inv34 && inv35 && inv36 && inv37 && inv38 && inv39 && inv40 && inv41 && inv42 && inv43 && inv44 && inv45 && inv46 && inv47 && inv48 && inv49 && inv50 && inv51 && inv52 && inv53 && inv54 && inv55 && inv56 && inv57 && inv58 && inv59 && inv60 && inv61 && inv62 && inv63 && inv64 && inv65 && inv66 && inv67 && inv68 && inv69 && inv70 && inv71 && inv72 && inv73 && inv74 && inv75 && inv76 && inv77 && inv78 && inv79 && inv80 && inv81 && inv82 && inv83 && inv84 && inv85 && inv86 && inv87 && inv88 && inv89 && inv90 && inv91 && inv92 && inv93 && inv94 && inv95 && inv96)' --when

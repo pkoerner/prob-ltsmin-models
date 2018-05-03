@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#PBS -l select=1:ncpus=22:mem=10GB:arch=ivybridge
+#PBS -l place=vscatter:shared
+#PBS -l walltime=00:15:00
+
+# no restart if job fails
+#PBS -r n
+
+#PBS -N rether-mc-21
+#PBS -A ProB
+
+
+MODEL=/home/phkoe102/models/rether.eventb
+
+#OUTPUTDIR=/gpfs/project/$USER/$PBS_JOBID
+ENDPOINT=/home/phkoe102/endpoint-$PBS_JOBID.probz
+
+#echo "P: Creating output dir"
+#mkdir -p $OUTPUTDIR
+
+echo "Requested amount of CPUs (per node): $OMP_NUM_THREADS"
+
+PROB_HOME=/home/phkoe102/prob_ltsmin/ProB/
+ZE_LD_PATH=/home/phkoe102/dest-install/lib/
+PROB_LD_PATH=$ZE_LD_PATH:$PROB_HOME/lib
+
+LTSMIN_SEQ=/home/phkoe102/dest-install/bin/prob2lts-seq
+LTSMIN_SYM=/home/phkoe102/dest-install/bin/prob2lts-sym
+LTSMIN_MC=/home/phkoe102/dest-install/bin/prob2lts-mc
+PROBCLI=$PROB_HOME/probcli
+
+touch $ENDPOINT
+
+sleep 5
+LTSMIN_MEM_SIZE=10000000000 LD_LIBRARY_PATH=$PROB_LD_PATH PATH=$PATH:$PROB_HOME /usr/bin/time -v $LTSMIN_MC $MODEL --zocket-prefix=/home/phkoe102/endpoint$PBS_JOBID --threads=21 -c --invariant='!is_init || (inv1 && inv2 && inv3)' --when
