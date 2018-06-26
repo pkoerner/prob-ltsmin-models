@@ -15,6 +15,20 @@
 - gmp 6.1.2
 - Boost 1.62.0
 
+## Parameters used:
+
+### LTSmin
+
+- `-rbs,hf` (transform dependency matrix via boost-sloan and horizontal flipping)
+- `--vset=lddmc` (use list decision diagrams instead of sylvan or BDDs)
+- `--order=chain` (exploration strategy, instead of breadth-first-search)
+
+### ProB
+
+- `-noass` (do not check assertions / theorems)
+- `-nodead` (do not check deadlocks)
+- `-nogoal` (do not evaluate goal predicates)
+
 
 ## Models
 
